@@ -1,8 +1,17 @@
-from ig import last_line
+from time import sleep
+
+from Display import Display
+from ig import get_followers_from_file
 
 
-def get_followers_informations():
-    data = last_line()
+def display_last_followers_informations():
+    while True:
+        followers = get_followers_from_file()
+        display = Display(followers)
+        display.show()
+        print(followers)
+        sleep(1)
 
-    followers= str(last_line)
+display_last_followers_informations()
+
 

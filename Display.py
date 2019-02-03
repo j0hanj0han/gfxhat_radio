@@ -1,35 +1,31 @@
+#!/usr/bin/env python
+
 from gfxhat import touch, lcd, backlight, fonts
-from  PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw
 
 
-class Display():
+class Display:
 
     def __init__(self, information):
         self.information = information
 
-
-    def run:
+    def show(self):
+        text= self.information
         width, height = lcd.dimensions()
-
-        print(width, height)
-
         image = Image.new('P', (width, height))
-        print(image)
-
         draw = ImageDraw.Draw(image)
 
         font = ImageFont.load_default()
-
-        text = "bonjour johan"
-
         w, h = font.getsize(text)
 
         x = (width - w) // 2
         y = (height - h) // 2
 
-        draw.text((x, y), text, 1, font)
+        draw.text((x,y), text, 1, font)
+        for x in range(128):
+            for y in range(64):
+                pixel = image.getpixel((x, y))
+                lcd.set_pixel(x, y, pixel)
 
-
-    def clean:
-        pass
+        lcd.show()
 
